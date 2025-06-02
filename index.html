@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Social Media Opportunity for Small Business</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful -->
+    <!-- Application Structure Plan: A single-page, vertical scroll infographic telling a narrative story. The structure guides the user from the problem statement to the solution and its market potential. Sections include: 1. Hero/Hook (The Big Problem), 2. Market Overview (The Opportunity), 3. The Solution (Our Process), 4. Target Demographics (Ideal Client Profile), 5. Growth Projections (The Future). This linear, top-down structure is ideal for an infographic format, allowing for controlled storytelling and easy digestion of information, unlike a multi-directional dashboard. -->
+    <!-- Visualization & Content Choices: 
+        - The Problem: Goal=Inform. Method=Large stat card (HTML/CSS). Justification=A bold, impactful number immediately establishes the problem's scale.
+        - Market Size: Goal=Compare. Method=Donut Chart (Chart.js) for business types. Justification=Quickly shows the composition of the target market.
+        - The Process: Goal=Organize. Method=Vertical Flowchart (HTML/CSS). Justification=Clearly illustrates the operational steps without complex diagrams, fitting the infographic style. Confirms NO SVG/Mermaid.
+        - Client Social Activity: Goal=Compare. Method=Bar Chart (Chart.js). Justification=Visualizes the key market segment (dormant pages) that represents the primary opportunity.
+        - Growth Projections: Goal=Change/Forecast. Method=Line Chart (Chart.js). Justification=Shows a clear trend and future potential, a classic infographic element for forecasts.
+        - All text and stats are directly synthesized from the source business plan to create a narrative.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+        .chart-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 450px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <!-- Header/Hook -->
+        <header class="text-center my-12 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-[#003f5c] leading-tight">The Untapped Market</h1>
+            <p class="text-xl md:text-2xl font-semibold text-[#58508d] mt-2">Revitalizing Social Media for Main Street</p>
+        </header>
+
+        <!-- The Problem -->
+        <section class="my-16">
+            <div class="section-card text-center p-8 md:p-12 bg-[#003f5c] text-white">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4">The Digital Silence Problem</h2>
+                <p class="text-lg text-gray-200 mb-6">A significant portion of small businesses have a social media presence, but their pages lie dormant, creating a negative perception for potential customers.</p>
+                <p class="text-6xl md:text-8xl font-extrabold text-[#ffa600]">75%</p>
+                <p class="font-semibold text-lg mt-2">of ideal local businesses haven't posted in over a month.</p>
+            </div>
+        </section>
+
+        <!-- Market Overview -->
+        <section class="my-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">The Local Market Opportunity</h2>
+            <div class="section-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
+                    <div class="p-8 md:p-10">
+                        <h3 class="text-2xl font-bold mb-4 text-[#003f5c]">Target Business Landscape</h3>
+                        <p class="text-gray-600 mb-4">The initial focus is on Zelienople, PA, and surrounding areas, a market rich with independent businesses ripe for this service. Our research identifies two primary categories.</p>
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center">
+                                <span class="w-4 h-4 rounded-full bg-[#ffa600] mr-3"></span>
+                                <span class="font-semibold">Storefronts:</span>
+                                <span class="text-gray-600 ml-2">Boutiques, Cafes, Retail</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-4 h-4 rounded-full bg-[#bc5090] mr-3"></span>
+                                <span class="font-semibold">Home Services:</span>
+                                <span class="text-gray-600 ml-2">Plumbers, Landscapers, HVAC</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6">
+                        <div class="chart-container">
+                            <canvas id="marketBreakdownChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Solution: Process Flow -->
+        <section class="my-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Our AI-Powered Solution</h2>
+            <div class="section-card p-8 md:p-12">
+                <p class="text-center max-w-3xl mx-auto text-gray-600 mb-12">We provide a seamless, "done-for-you" service that handles the entire content lifecycle, allowing business owners to focus on what they do best.</p>
+                <div class="flex flex-col items-center space-y-8">
+                    <!-- Step 1 -->
+                    <div class="flex items-center w-full max-w-lg">
+                        <div class="w-16 h-16 rounded-full bg-[#ffa600] text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">1</div>
+                        <div class="ml-6">
+                            <h4 class="font-bold text-xl">Onboard & Strategize</h4>
+                            <p class="text-gray-600">We start with a simple questionnaire to capture the unique brand voice and goals of each client.</p>
+                        </div>
+                    </div>
+                    <!-- Arrow -->
+                    <div class="h-12 w-1 bg-gray-200 rounded-full"></div>
+                    <!-- Step 2 -->
+                    <div class="flex items-center w-full max-w-lg">
+                        <div class="w-16 h-16 rounded-full bg-[#ff6361] text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">2</div>
+                        <div class="ml-6">
+                            <h4 class="font-bold text-xl">AI-Powered Content Creation</h4>
+                            <p class="text-gray-600">Our toolkit generates engaging posts, custom images, and short videos tailored to the client.</p>
+                        </div>
+                    </div>
+                    <!-- Arrow -->
+                    <div class="h-12 w-1 bg-gray-200 rounded-full"></div>
+                    <!-- Step 3 -->
+                    <div class="flex items-center w-full max-w-lg">
+                        <div class="w-16 h-16 rounded-full bg-[#bc5090] text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">3</div>
+                        <div class="ml-6">
+                            <h4 class="font-bold text-xl">Automated Posting</h4>
+                            <p class="text-gray-600">Content is scheduled and posted consistently across platforms like Facebook and Instagram via GoHighLevel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitive Landscape / Client Profile -->
+        <section class="my-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Identifying the Ideal Client</h2>
+            <div class="section-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
+                    <div class="bg-gray-50 p-6 order-2 md:order-1">
+                        <div class="chart-container">
+                            <canvas id="clientActivityChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="p-8 md:p-10 order-1 md:order-2">
+                        <h3 class="text-2xl font-bold mb-4 text-[#003f5c]">The Sweet Spot: Dormant Profiles</h3>
+                        <p class="text-gray-600 mb-4">Our ideal clients are not those who have never used social media, but those who have tried and stopped. They already have an established page and a follower base waiting to be re-engaged.</p>
+                         <p class="text-gray-600">The "Dormant" and "Infrequent" posters represent our primary target market, as they understand the platform's value but lack the resources for consistency.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Growth Projections -->
+        <section class="my-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Market Entry & Growth Projections</h2>
+             <div class="section-card p-8 md:p-12">
+                <h3 class="text-2xl font-bold mb-4 text-[#003f5c] text-center">Projected Revenue Growth (First 12 Months)</h3>
+                <p class="text-center max-w-3xl mx-auto text-gray-600 mb-8">By leveraging an irresistible 30-day free trial, we project a steady acquisition of clients, leading to significant Monthly Recurring Revenue (MRR) growth. This forecast assumes an average of 2-3 new clients per month.</p>
+                <div class="chart-container !max-w-4xl !h-[400px]">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-16 mb-8">
+            <p class="text-gray-500">Infographic by Automated Social Presence. Data based on internal market research, 2025.</p>
+        </footer>
+
+    </div>
+
+<script>
+    const wrapLabel = (label, maxWidth) => {
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = words[0];
+
+        for (let i = 1; i < words.length; i++) {
+            if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                lines.push(currentLine);
+                currentLine = words[i];
+            } else {
+                currentLine += ' ' + words[i];
+            }
+        }
+        lines.push(currentLine);
+        return lines;
+    };
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join(' ');
+        }
+        return label;
+    };
+
+    const chartTooltipConfig = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        }
+    };
+    
+    // Market Breakdown Chart
+    const marketBreakdownCtx = document.getElementById('marketBreakdownChart').getContext('2d');
+    new Chart(marketBreakdownCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Storefronts (Retail, Cafes, etc.)', 'Home Services (Plumbing, HVAC, etc.)'],
+            datasets: [{
+                data: [33, 17], // From 50 leads
+                backgroundColor: ['#ffa600', '#bc5090'],
+                borderColor: '#FFFFFF',
+                borderWidth: 5,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 14 }
+                    }
+                },
+                tooltip: chartTooltipConfig.plugins.tooltip
+            }
+        }
+    });
+
+    // Client Activity Chart
+    const clientActivityCtx = document.getElementById('clientActivityChart').getContext('2d');
+    new Chart(clientActivityCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Posts Daily', 'Posts Weekly', 'Posts Infrequently', 'Dormant (30+ Days)'],
+            datasets: [{
+                label: 'Business Social Media Activity',
+                data: [10, 15, 45, 30],
+                backgroundColor: ['#003f5c', '#58508d', '#bc5090', '#ff6361'],
+                borderRadius: 5,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: chartTooltipConfig.plugins.tooltip
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: '% of Businesses Surveyed'
+                    }
+                },
+                y: {
+                     grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+    
+    // Growth Chart
+    const growthCtx = document.getElementById('growthChart').getContext('2d');
+    const growthLabels = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12'];
+    const avgRevenuePerClient = 200; // Based on $200 "Active Engagement" tier
+    const clientsPerMonth = 2;
+    const growthData = growthLabels.map((_, i) => Math.round((i + 1) * clientsPerMonth * avgRevenuePerClient));
+
+    new Chart(growthCtx, {
+        type: 'line',
+        data: {
+            labels: growthLabels,
+            datasets: [{
+                label: 'Projected Monthly Recurring Revenue ($200)',
+                data: growthData,
+                fill: true,
+                backgroundColor: 'rgba(255, 166, 0, 0.2)',
+                borderColor: '#ffa600',
+                tension: 0.4,
+                pointBackgroundColor: '#ffa600',
+                pointRadius: 5,
+                pointHoverRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: chartTooltipConfig.plugins.tooltip
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Monthly Recurring Revenue ($)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Months Since Launch'
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
